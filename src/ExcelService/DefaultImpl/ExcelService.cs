@@ -41,20 +41,25 @@ namespace NPOI.DotNetCore.ExcelService.DefaultImpl
 
             foreach (var item in data)
             {
-                if (item == null)
-                    continue;
-
-                var type = item.GetType();
                 var cell = row.CreateCell(cellNumber++);
 
-                if (type == typeof(double))
-                    cell.SetCellValue((double)item);
-                else if (type == typeof(bool))
-                    cell.SetCellValue((bool)item);
-                else if (type == typeof(DateTime))
-                    cell.SetCellValue((DateTime)item);
+                if (item == null)
+                {
+                    cell.SetCellValue(string.Empty);
+                }
                 else
-                    cell.SetCellValue(item.ToString());
+                {
+                    var type = item.GetType();
+
+                    if (type == typeof(double))
+                        cell.SetCellValue((double)item);
+                    else if (type == typeof(bool))
+                        cell.SetCellValue((bool)item);
+                    else if (type == typeof(DateTime))
+                        cell.SetCellValue((DateTime)item);
+                    else
+                        cell.SetCellValue(item.ToString());
+                }
             }
 
             return rowNumber + 1;
