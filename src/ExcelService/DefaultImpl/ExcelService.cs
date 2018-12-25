@@ -41,6 +41,9 @@ namespace NPOI.DotNetCore.ExcelService.DefaultImpl
 
             foreach (var item in data)
             {
+                if (item == null)
+                    continue;
+
                 var type = item.GetType();
                 var cell = row.CreateCell(cellNumber++);
 
