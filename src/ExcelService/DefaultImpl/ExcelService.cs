@@ -96,7 +96,7 @@ namespace NPOI.DotNetCore.ExcelService.DefaultImpl
 
                 for (int j = row.FirstCellNum; j < cellCount; j++)
                 {
-                    var value = row.GetCell(j).ToString();
+                    var value = row.GetCell(j)?.ToString() ?? string.Empty;
 
                     rowData.Add(value);
                 }
